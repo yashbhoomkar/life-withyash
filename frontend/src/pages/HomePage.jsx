@@ -14,13 +14,15 @@ function ConnectForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, message }),
       });
+      const result = await response.json().catch(() => ({}));
       if (!response.ok) {
-        const result = await response.json().catch(() => ({}));
         throw new Error(result.error || 'Could not send your message. Please try again.');
       }
       setName('');
       setMessage('');
-      setStatus('Message sent. Thank you!');
+      setStatus(result.emailSent
+        ? 'Message sent. Thank you!'
+        : 'Message saved, but the email notification could not be sent.');
     } catch (error) {
       setStatus(error.message);
     }

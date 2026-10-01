@@ -18,6 +18,8 @@ For a new setup, first copy `.env.example` to `.env` and replace `REPLACE_WITH_D
 
 The backend listens on container port 5000, mapped to host port 5001 by default. `GET /api/content` returns playlist, dialogue, and car metadata; car thumbnails and full images are served by `/api/cars/:slug/thumbnail` and `/api/cars/:slug/full`. Connect form submissions are stored with `POST /api/messages`.
 
+Visitor messages are saved to MongoDB and emailed to `bhoomkar04@gmail.com` with the subject `new message on personal website`. To enable email delivery, set `GMAIL_APP_PASSWORD` in the root `.env` to an App Password for that Gmail account, then restart with `./start-website`. Do not commit this value. Messages are still saved if the email service is not configured or temporarily unavailable.
+
 ## Admin dashboard
 
 Open `http://localhost:5173/admin` or use **For Yash** at the bottom of the public sidebar. The dashboard is responsive and lets the site owner rename sections, add Spotify playlists by URL, add dialogues, upload photos, and read visitor messages. New content is saved in MongoDB and appears on the public site.

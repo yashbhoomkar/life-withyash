@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
+import nodemailer from 'nodemailer';
 import { createHmac, randomBytes, scryptSync, timingSafeEqual } from 'node:crypto';
 import multer from 'multer';
 import { CarPhoto, Dialogue, Playlist, Section, VisitorMessage, VisitCounter } from './models.js';
@@ -217,7 +218,29 @@ app.post('/api/messages', async (request, response, next) => {
     if (message.length > 5000) return response.status(400).json({ error: 'Message must be 5000 characters or fewer.' });
 
     const savedMessage = await VisitorMessage.create({ name: name || undefined, message });
-    return response.status(201).json({ id: savedMessage._id.toString(), status: 'sent' });
+    let emailSent = false;
+    const appPassword = (process.env.GMAIL_APP_PASSWORD || '').replace(/\s/g, '');
+    if (appPassword) {
+      try {
+        const transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: { user: 'bhoomkar04@gmail.com', pass: appPassword },
+          connectionTimeout: 10000,
+          greetingTimeout: 10000,
+          socketTimeout: 15000,
+        });
+        await transporter.sendMail({
+          from: 'bhoomkar04@gmail.com',
+          to: 'bhoomkar04@gmail.com',
+          subject: 'new message on personal website',
+          text: `Name (optional): ${name || 'Not provided'}\n\nMessage:\n${message}`,
+        });
+        emailSent = true;
+      } catch (emailError) {
+        console.error('Visitor message was saved, but its email notification failed:', emailError.message);
+      }
+    }
+    return response.status(201).json({ id: savedMessage._id.toString(), status: 'sent', emailSent });
   } catch (error) {
     return next(error);
   }
