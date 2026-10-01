@@ -1,0 +1,7 @@
+frontend/src/pages/HomePage.jsx:124:          <h1 className="content-section-title">Songs On Loop</h1>
+frontend/src/pages/HomePage.jsx:134:      <details className="content-section" id="photos" open>
+frontend/src/pages/HomePage.jsx:136:          <h1 className="content-section-title">Photos</h1>
+frontend/src/pages/HomePage.jsx:146:          <h1 className="content-section-title">Dialogues</h1>
+frontend/src/pages/HomePage.jsx:163:          <h1 className="content-section-title">Connect</h1>
+frontend/src/pages/HomePage.jsx:171:          <h1 className="content-section-title">Links</h1>
+frontend/src/components/Sidebar/Sidebar.jsx:13:  { title: 'Photos', items: [['Gallery', '#photos']] },
