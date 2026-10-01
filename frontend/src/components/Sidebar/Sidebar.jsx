@@ -97,7 +97,6 @@ export default function Sidebar({ sidebarOpen, content, onCloseMobile }) {
           const defaultSection = sections.find((item) => item.key === section.key);
           return <Section key={section.key} keyName={section.key} title={section.title} items={defaultSection?.items || []} onNavigate={onCloseMobile} />;
         })}
-        <a className="for-yash" href="/admin">For Yash</a>
       </nav>
     </aside>
   );
