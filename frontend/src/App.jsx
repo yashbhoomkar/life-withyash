@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Sidebar from './components/Sidebar/Sidebar.jsx';
 import HomePage from './pages/HomePage.jsx';
 import AdminDashboard from './pages/AdminDashboard.jsx';
@@ -36,6 +37,7 @@ export default function App() {
           <main className="main-content" aria-label="Main content"><HomePage content={content} /></main>
         </div>
       )}
+      <Analytics />
     </div>
   );
 }
