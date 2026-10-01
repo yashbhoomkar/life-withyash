@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { apiUrl } from '../api.js';
 
 function ConnectForm() {
   const [name, setName] = useState('');
@@ -9,7 +10,7 @@ function ConnectForm() {
     event.preventDefault();
     setStatus('Sending...');
     try {
-      const response = await fetch('/api/messages', {
+      const response = await fetch(apiUrl('/api/messages'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, message }),
@@ -102,7 +103,7 @@ function CarsGallery({ cars }) {
           >
             <img
               className="car-thumbnail"
-              src={car.thumbnailUrl}
+              src={apiUrl(car.thumbnailUrl)}
               alt={car.name}
               width={car.thumbnailWidth}
               height={car.thumbnailHeight}
@@ -131,7 +132,7 @@ function CarsGallery({ cars }) {
           >×</button>
           <img
             className="photo-viewer-image"
-            src={selectedPhoto.fullUrl}
+            src={apiUrl(selectedPhoto.fullUrl)}
             alt={selectedPhoto.name}
             width={selectedPhoto.fullWidth}
             height={selectedPhoto.fullHeight}

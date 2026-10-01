@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { apiUrl } from '../api.js';
 
 const sectionDefaults = [
   ['songs-on-loop', 'Songs On Loop'], ['clicks', 'Clicks'], ['dialogues', 'Dialogues'], ['connect', 'Connect'], ['links', 'Links'],
@@ -11,12 +12,12 @@ function AuthForm({ onLogin }) {
   async function submit(event) {
     event.preventDefault(); setError('');
     try {
-      const response = await fetch('/api/admin/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username, password }) });
+      const response = await fetch(apiUrl('/api/admin/login'), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username, password }) });
       const responseText = await response.text();
       let result = {};
       try { result = responseText ? JSON.parse(responseText) : {}; } catch { /* handled with a readable API error below */ }
       if (!responseText || (responseText && Object.keys(result).length === 0)) {
-        throw new Error('The backend did not return a login response. Restart the site with ./start-website and try again.');
+        throw new Error('The backend did not return a login response. Restart backend/start-backend and frontend/start-frontend, then try again.');
       }
       if (!response.ok) throw new Error(result.error || 'Login failed.');
       onLogin(result.token);
@@ -60,7 +61,7 @@ export default function AdminDashboard() {
   const [showSectionModal, setShowSectionModal] = useState(false); const [newSectionName, setNewSectionName] = useState('');
   const headers = { Authorization: `Bearer ${token}` };
   async function api(path, options = {}) {
-    const response = await fetch(path, { ...options, headers: { ...headers, ...options.headers } });
+    const response = await fetch(apiUrl(path), { ...options, headers: { ...headers, ...options.headers } });
     if (response.status === 401) { sessionStorage.removeItem('adminToken'); setToken(''); throw new Error('Your session expired. Please sign in again.'); }
     const data = await response.json().catch(() => ({}));
     if (!response.ok) throw new Error(data.error || 'Could not save changes.');

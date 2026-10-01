@@ -8,7 +8,7 @@ import multer from 'multer';
 import { CarPhoto, Dialogue, Playlist, Section, VisitorMessage, VisitCounter } from './models.js';
 import { seedInitialContent } from './seedData.js';
 
-dotenv.config({ path: '../.env' });
+dotenv.config();
 
 const app = express();
 const port = Number(process.env.PORT || 5000);

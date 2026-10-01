@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Sidebar from './components/Sidebar/Sidebar.jsx';
 import HomePage from './pages/HomePage.jsx';
 import AdminDashboard from './pages/AdminDashboard.jsx';
+import { apiUrl } from './api.js';
 
 let publicVisitRecorded = false;
 
@@ -10,12 +11,12 @@ export default function App() {
   const [content, setContent] = useState(null);
   const isAdmin = window.location.pathname.replace(/\/$/, '') === '/admin';
   useEffect(() => {
-    fetch('/api/content').then((r) => r.ok ? r.json() : Promise.reject(new Error('Could not load website content.'))).then(setContent).catch(() => {});
+    fetch(apiUrl('/api/content')).then((r) => r.ok ? r.json() : Promise.reject(new Error('Could not load website content.'))).then(setContent).catch(() => {});
   }, []);
   useEffect(() => {
     if (isAdmin || publicVisitRecorded) return;
     publicVisitRecorded = true;
-    fetch('/api/visits', { method: 'POST', keepalive: true }).catch(() => {});
+    fetch(apiUrl('/api/visits'), { method: 'POST', keepalive: true }).catch(() => {});
   }, [isAdmin]);
   const connectTitle = content?.sections?.find((section) => section.key === 'connect')?.title || 'Connect';
   const openConnect = () => {

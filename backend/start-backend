@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SERVICE_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SERVICE_DIR"
+
+docker compose down
+docker compose up --build -d
+docker compose ps
+
+echo "Backend API: http://localhost:5001/api/health"
