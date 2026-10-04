@@ -1,0 +1,45 @@
+name: Deploy Backend to VPS
+
+on:
+  push:
+    branches:
+      - working
+      - main
+    paths:
+      - 'backend/**'
+      - '.github/workflows/deploy-backend.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy Life-with-Yash Backend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to Ubuntu VPS via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST || '129.121.133.47' }}
+          username: ${{ secrets.VPS_USER || 'yash' }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: 22
+          script_stop: true
+          script: |
+            echo "🚀 Updating Life With Yash Backend on VPS..."
+            cd /opt/life-withyash
+            git fetch origin
+            CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+            git reset --hard origin/$CURRENT_BRANCH
+            
+            echo "🐳 Building and starting Docker container..."
+            cd /opt/life-withyash/backend
+            ./start-backend
+            
+            echo "🩺 Verifying health endpoint..."
+            sleep 5
+            curl -fsS http://127.0.0.1:5001/api/health || (echo "❌ Local health check failed!" && exit 1)
+            
+            echo "✅ Life With Yash backend deployed successfully!"
