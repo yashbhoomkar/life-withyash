@@ -161,6 +161,7 @@ export default function HomePage({ content }) {
 
   return (
     <div className="single-page-content">
+      <CICDTestBadge />
       <details className="content-section" id="songs-on-loop">
         <summary className="content-section-heading">
           <h1 className="content-section-title">{sectionTitle('songs-on-loop', 'Songs On Loop')}</h1>
