@@ -26,6 +26,8 @@ export async function seedInitialContent() {
   } else if (legacyMemesSection && currentMemesSection) {
     await Section.deleteOne({ _id: legacyMemesSection._id });
     await Section.updateOne({ _id: currentMemesSection._id }, { $set: { title: 'Memes' } });
+  } else if (currentMemesSection) {
+    await Section.updateOne({ _id: currentMemesSection._id }, { $set: { title: 'Memes' } });
   }
 
   if (await Section.countDocuments() === 0) {
