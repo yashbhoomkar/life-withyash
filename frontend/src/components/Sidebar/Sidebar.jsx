@@ -9,7 +9,7 @@ const sections = [
       ['Millionaire', '#millionaire'],
     ],
   },
-  { key: 'clicks', title: 'Clicks', items: [['Gallery', '#clicks']] },
+  { key: 'memes', title: 'Memes', items: [['Gallery', '#memes']] },
   { key: 'dialogues', title: 'Dialogues', items: [['Movie Dialogues', '#dialogues']] },
   { key: 'connect', title: 'Connect', items: [] },
   {
