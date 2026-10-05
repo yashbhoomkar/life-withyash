@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import { apiUrl } from '../api.js';
 
-function CICDTestBadge() {\n  return <div className="eyebrow" style={{ marginBottom: '1rem' }}>Updated Oct 5, 2026 · CI/CD test #2</div>;\n}\n\nfunction ConnectForm() {
+function CICDTestBadge() {
+  return <div className="eyebrow" style={{ marginBottom: '1rem' }}>Updated Oct 5, 2026 · CI/CD test #2</div>;
+}
+
+function ConnectForm() {
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState('');
