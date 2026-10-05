@@ -169,9 +169,9 @@ export default function HomePage({ content }) {
         </div>
       </details>
 
-      <details className="content-section" id="clicks">
+      <details className="content-section" id="memes">
         <summary className="content-section-heading">
-          <h1 className="content-section-title">{sectionTitle('clicks', 'Clicks')}</h1>
+          <h1 className="content-section-title">{sectionTitle('memes', 'Memes')}</h1>
           <span className="section-caret" aria-hidden="true">⌃</span>
         </summary>
         <div className="content-section-body">
@@ -216,7 +216,7 @@ export default function HomePage({ content }) {
           </div>
         </div>
       </details>
-      {content?.sections?.filter((section) => !['gaana-bajao', 'clicks', 'dialogues', 'connect', 'links'].includes(section.key)).map((section) => (
+      {content?.sections?.filter((section) => !['gaana-bajao', 'memes', 'dialogues', 'connect', 'links'].includes(section.key)).map((section) => (
         <details className="content-section" id={section.key} key={section.key}>
           <summary className="content-section-heading">
             <h1 className="content-section-title">{section.title}</h1>
