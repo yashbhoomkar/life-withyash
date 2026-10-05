@@ -3,7 +3,7 @@ import { itemIcons } from './itemIcons.js';
 
 const sections = [
   {
-    key: 'songs-on-loop', title: 'Songs On Loop',
+    key: 'gaana-bajao', title: 'Gaana Bajao',
     items: [
       ['On Loop', '#on-loop'],
       ['Millionaire', '#millionaire'],
