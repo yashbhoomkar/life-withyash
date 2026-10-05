@@ -31,7 +31,7 @@ export async function seedInitialContent() {
   if (await Section.countDocuments() === 0) {
     await Section.insertMany([
       { key: 'gaana-bajao', title: 'Gaana Bajao', order: 0 },
-      { key: 'memes', title: 'Memes', order: 1 }
+      { key: 'memes', title: 'Memes', order: 1 },
       { key: 'dialogues', title: 'Dialogues', order: 2 },
       { key: 'connect', title: 'Connect', order: 3 },
       { key: 'links', title: 'Links', order: 4 },
