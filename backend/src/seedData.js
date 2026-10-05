@@ -7,6 +7,8 @@ const asset = (path) => fileURLToPath(new URL(`../seed-assets/${path}`, import.m
 export async function seedInitialContent() {
   const legacySection = await Section.findOne({ key: 'songs-on-loop' });
   const currentSection = await Section.findOne({ key: 'gaana-bajao' });
+  const legacyMemesSection = await Section.findOne({ key: 'clicks' });
+  const currentMemesSection = await Section.findOne({ key: 'memes' });
 
   if (legacySection && !currentSection) {
     legacySection.key = 'gaana-bajao';
@@ -17,10 +19,19 @@ export async function seedInitialContent() {
     await Section.updateOne({ _id: currentSection._id }, { $set: { title: 'Gaana Bajao' } });
   }
 
+  if (legacyMemesSection && !currentMemesSection) {
+    legacyMemesSection.key = 'memes';
+    legacyMemesSection.title = 'Memes';
+    await legacyMemesSection.save();
+  } else if (legacyMemesSection && currentMemesSection) {
+    await Section.deleteOne({ _id: legacyMemesSection._id });
+    await Section.updateOne({ _id: currentMemesSection._id }, { $set: { title: 'Memes' } });
+  }
+
   if (await Section.countDocuments() === 0) {
     await Section.insertMany([
       { key: 'gaana-bajao', title: 'Gaana Bajao', order: 0 },
-      { key: 'clicks', title: 'Clicks', order: 1 },
+      { key: 'memes', title: 'Memes', order: 1 }
       { key: 'dialogues', title: 'Dialogues', order: 2 },
       { key: 'connect', title: 'Connect', order: 3 },
       { key: 'links', title: 'Links', order: 4 },
