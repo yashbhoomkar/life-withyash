@@ -1,0 +1,16 @@
+{
+  "name": "Life Katta",
+  "short_name": "Life Katta",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#05071C",
+  "background_color": "#05071C",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
