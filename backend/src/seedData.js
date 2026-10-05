@@ -5,9 +5,21 @@ import { CarPhoto, Dialogue, Playlist, Section } from './models.js';
 const asset = (path) => fileURLToPath(new URL(`../seed-assets/${path}`, import.meta.url));
 
 export async function seedInitialContent() {
+  const legacySection = await Section.findOne({ key: 'songs-on-loop' });
+  const currentSection = await Section.findOne({ key: 'gaana-bajao' });
+
+  if (legacySection && !currentSection) {
+    legacySection.key = 'gaana-bajao';
+    legacySection.title = 'Gaana Bajao';
+    await legacySection.save();
+  } else if (legacySection && currentSection) {
+    await Section.deleteOne({ _id: legacySection._id });
+    await Section.updateOne({ _id: currentSection._id }, { $set: { title: 'Gaana Bajao' } });
+  }
+
   if (await Section.countDocuments() === 0) {
     await Section.insertMany([
-      { key: 'songs-on-loop', title: 'Songs On Loop', order: 0 },
+      { key: 'gaana-bajao', title: 'Gaana Bajao', order: 0 },
       { key: 'clicks', title: 'Clicks', order: 1 },
       { key: 'dialogues', title: 'Dialogues', order: 2 },
       { key: 'connect', title: 'Connect', order: 3 },
