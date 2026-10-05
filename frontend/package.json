@@ -16,5 +16,8 @@
     "@vercel/analytics": "^2.0.1",
     "react": "latest",
     "react-dom": "latest"
+  },
+  "engines": {
+    "node": "24.x"
   }
 }
