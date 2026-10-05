@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { apiUrl } from '../api.js';
 
 const sectionDefaults = [
-  ['gaana-bajao', 'Gaana Bajao'], ['clicks', 'Clicks'], ['dialogues', 'Dialogues'], ['connect', 'Connect'], ['links', 'Links'],
+  ['gaana-bajao', 'Gaana Bajao'], ['memes', 'Memes'], ['dialogues', 'Dialogues'], ['connect', 'Connect'], ['links', 'Links'],
 ];
 
 function AuthForm({ onLogin }) {
