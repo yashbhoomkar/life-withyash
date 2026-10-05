@@ -1,10 +1,6 @@
 import { useEffect, useState } from 'react';
 import { apiUrl } from '../api.js';
 
-function CICDTestBadge() {
-  return <div className="eyebrow" style={{ marginBottom: '1rem' }}>Updated Oct 5, 2026 · CI/CD test #2</div>;
-}
-
 function ConnectForm() {
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
@@ -161,7 +157,6 @@ export default function HomePage({ content }) {
 
   return (
     <div className="single-page-content">
-      <CICDTestBadge />
       <details className="content-section" id="songs-on-loop">
         <summary className="content-section-heading">
           <h1 className="content-section-title">{sectionTitle('songs-on-loop', 'Songs On Loop')}</h1>
