@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>Life Katta</title>
+  <rect width="64" height="64" rx="14" fill="#05071C"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="12.5" fill="none" stroke="#CBACF9" stroke-opacity=".34" stroke-width="3"/>
+  <path d="M15 16h9v25h11v7H15z" fill="#F4EFFF"/>
+  <path d="M33 24h7v24h-7z" fill="#CBACF9"/>
+  <path d="M40 31h8v17h-8z" fill="#A981F0"/>
+  <path d="M48 12l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z" fill="#CBACF9"/>
+</svg>
