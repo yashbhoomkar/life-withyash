@@ -157,9 +157,9 @@ export default function HomePage({ content }) {
 
   return (
     <div className="single-page-content">
-      <details className="content-section" id="songs-on-loop">
+      <details className="content-section" id="gaana-bajao">
         <summary className="content-section-heading">
-          <h1 className="content-section-title">{sectionTitle('songs-on-loop', 'Songs On Loop')}</h1>
+          <h1 className="content-section-title">{sectionTitle('gaana-bajao', 'Gaana Bajao')}</h1>
           <span className="section-caret" aria-hidden="true">⌃</span>
         </summary>
         <div className="content-section-body">
@@ -216,7 +216,7 @@ export default function HomePage({ content }) {
           </div>
         </div>
       </details>
-      {content?.sections?.filter((section) => !['songs-on-loop', 'clicks', 'dialogues', 'connect', 'links'].includes(section.key)).map((section) => (
+      {content?.sections?.filter((section) => !['gaana-bajao', 'clicks', 'dialogues', 'connect', 'links'].includes(section.key)).map((section) => (
         <details className="content-section" id={section.key} key={section.key}>
           <summary className="content-section-heading">
             <h1 className="content-section-title">{section.title}</h1>
