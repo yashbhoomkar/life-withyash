@@ -175,7 +175,7 @@ app.post('/api/admin/photos', requireAdmin, upload.fields([{ name: 'image', maxC
 });
 
 app.get('/api/health', (_request, response) => {
-  response.json({ status: mongoose.connection.readyState === 1 ? 'ok' : 'connecting', version: '2026.10.05-ci-test-2' });
+  response.json({ status: mongoose.connection.readyState === 1 ? 'ok' : 'connecting' });
 });
 
 app.get('/api/content', async (_request, response, next) => {
