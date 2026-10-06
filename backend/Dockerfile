@@ -4,10 +4,10 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-COPY --chown=node:node package*.json ./
-RUN npm ci --omit=dev
+COPY package*.json ./
+RUN npm install --omit=dev
 
-COPY --chown=node:node . .
+COPY . .
 
 USER node
 
