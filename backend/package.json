@@ -1,7 +1,7 @@
 {
-  "name": "personal-website-backend",
+  "name": "tech-katta-backend",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "start": "node src/server.js",
@@ -12,8 +12,6 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
-    "mongoose": "^9.10.3",
-    "multer": "^2.4.0",
-    "nodemailer": "^10.0.13"
+    "mongodb": "^7.7.0"
   }
 }
